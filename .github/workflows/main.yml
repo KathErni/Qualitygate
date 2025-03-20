@@ -33,7 +33,7 @@ jobs:
       - name: Upload ZIP Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: artifacts-zip
+          name: KathlynneMoraga
           path: kathlynnejoymoraga.zip
 
   lint:
