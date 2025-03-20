@@ -25,11 +25,25 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run build
+        run: npm run build
+
       - name: Run tests
         run: npm test
 
-      - name: Run build
-        run: npm run build
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Run lint
         run: npm run lint
@@ -37,13 +51,26 @@ jobs:
       - name: Run prettier
         run: npm run prettier
 
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Run E2E tests
         run: npm run test:ci
 
-      - name: Set name
-        run: echo "Kathlynne Joy Moraga - Build Completed"
+  CallKath:
+    runs-on: ubuntu-latest
 
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: coverage
+    steps:
+      - name: Set name
+        run: echo "Kathlynne Joy Moraga - Test Completed"
