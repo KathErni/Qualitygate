@@ -11,6 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -23,24 +24,21 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
-
-      - name: Create folder
+      - name: Build Artifacts
         run: |
-          mkdir -p artifacts 
-          cp -r source/repos/QualityGates/Login/artifacts/
+          mkdir -p artifacts
+          cp -r source/repos/QualityGate/Login/* artifacts/  # Ensure this path is correct
 
-      - name: List Directory
-        run: |
-          ls -R source/repos/QualityGates/Login/
-
-      - name: Create ZIP
+      - name: Create ZIP file
         run: |
           cd artifacts
-          zip -r ../login.zip .
-          mv login.zip ../
-          cd ..
+          zip -r ../artifacts.zip .  # Create a ZIP file of the artifacts
+
+      - name: Upload ZIP Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts-zip
+          path: artifacts.zip
 
   lint:
     runs-on: ubuntu-latest
