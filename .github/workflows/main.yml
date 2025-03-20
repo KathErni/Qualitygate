@@ -27,12 +27,12 @@ jobs:
       - name: Build Artifacts
         run: |
           mkdir -p artifacts
-          cp -r source/repos/QualityGate/Login/* artifacts/  # Ensure this path is correct
+          cp -r source/repos/QualityGates/Login/* artifacts/
 
       - name: Create ZIP file
         run: |
           cd artifacts
-          zip -r ../artifacts.zip .  # Create a ZIP file of the artifacts
+          zip -r ../artifacts.zip .
 
       - name: Upload ZIP Artifact
         uses: actions/upload-artifact@v2
@@ -42,7 +42,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    needs: [build]
+    # needs: [build]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
