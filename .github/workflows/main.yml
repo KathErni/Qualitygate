@@ -35,7 +35,7 @@ jobs:
           zip -r ../artifacts.zip .
 
       - name: Upload ZIP Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: artifacts-zip
           path: artifacts.zip
