@@ -11,7 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    needs: [lint, e2e, CallKath]
 
     steps:
       - name: Checkout code
@@ -51,7 +50,7 @@ jobs:
       - name: Run prettier
         run: npm run prettier
 
-  e2e:
+  unit-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -67,6 +66,23 @@ jobs:
 
       - name: Run E2E tests
         run: npm run test:ci
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run E2E tests
+        run: npm run e2e
 
   CallKath:
     runs-on: ubuntu-latest
