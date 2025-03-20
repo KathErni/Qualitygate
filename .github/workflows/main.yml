@@ -28,13 +28,13 @@ jobs:
         run: npm run build
 
       - name: Create ZIP file
-        run: zip -r artifacts.zip ./dist
+        run: zip -r kathlynnejoymoraga.zip ./dist
 
       - name: Upload ZIP Artifact
         uses: actions/upload-artifact@v4
         with:
           name: artifacts-zip
-          path: artifacts.zip
+          path: kathlynnejoymoraga.zip
 
   lint:
     runs-on: ubuntu-latest
